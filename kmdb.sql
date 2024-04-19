@@ -120,10 +120,104 @@
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
+
+
+DROP TABLE IF EXISTS studio;
+CREATE TABLE studio (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    studio_name text
+);
+
+INSERT INTO studio (
+    studio_name
+)
+VALUES ('Warner Bros');
+
+DROP TABLE IF EXISTS movie_table;
+
+CREATE TABLE movie_table (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    movie_title text,
+    years_released INTEGER,
+    MPAA_rating text,
+    studio_id INTEGER
+);
+
+INSERT INTO movie_table (
+    movie_title,
+    years_released,
+    MPAA_rating,
+    studio_id
+)
+VALUES 
+('Batman Begins' , 2005 ,'PG-13', 1),
+('The Dark Knight', 2008, 'PG-13',1),
+('The Dark Knight Rises', 2012, 'PG-13',1);
+
+DROP TABLE IF EXISTS actorinfo;
+
+CREATE TABLE actorinfo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor_name text,
+    character_name text,
+    movie_id INTEGER,
+    foreign KEY (movie_id) REFERENCES movie_table (id)
+);
+
+INSERT INTO actorinfo (
+    
+    actor_name
+)
+VALUES 
+('Christian Bale'),
+('Michael Caine'),
+('Liam Neeson'),
+('Katie Holmes'),
+('Gary Oldman'),
+('Heath Ledger'),
+('Aaron Eckhart'),
+('Maggie Gyllenhaal'),
+('Tom Hardy'),
+('Joseph Gordon-Levitt'),
+('Anne Hathaway');
+
+CREATE TABLE character (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    movie_id INTEGER,
+    actor_id INTEGER,
+    character_name
+);
+
+INSERT INTO character (
+    movie_id,
+    actor_id,
+    character_name
+)
+VALUES 
+(1, 1, 'Bruce Wayne'),
+(1,2,'Alfred'),
+(1,3, 'Ras Al Ghul'),
+(1,4, 'Rachel Dawes'),
+(1,5, 'Commissioner Gordon'),
+(2,1, 'Bruce Wayne'),
+(2,6,'Joker'),
+(2,7, 'Harvey Dent'),
+(2,2,'Alfred'),
+(2,8, 'Rachel Dawes'),
+(3,1, 'Bruce Wayne'),
+(3,5, 'Commissioner Gordon' ),
+(3,9, 'Bane'),
+(3,10, 'John Blake'),
+(3,11,'Selina Kyle')
+;
 -- Prints a header for the movies output
 .print "Movies"
 .print "======"
 .print ""
+
+SELECT movie_title, years_released, MPAA_rating, studio.studio_name
+FROM movie_table
+INNER JOIN studio ON studio.id = movie_table.studio_id; 
 
 -- The SQL statement for the movies output
 -- TODO!
@@ -134,6 +228,12 @@
 .print "========"
 .print ""
 
+SELECT movie_title, actor_name, character_name
+FROM movie_table
+INNER JOIN character on movie_table. = 
+INNER JOIN character on actorinfo.
 
 -- The SQL statement for the cast output
 -- TODO!
+
+
