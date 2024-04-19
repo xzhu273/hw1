@@ -181,6 +181,8 @@ VALUES
 ('Joseph Gordon-Levitt'),
 ('Anne Hathaway');
 
+DROP TABLE IF EXISTS character;
+
 CREATE TABLE character (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id INTEGER,
@@ -228,10 +230,10 @@ INNER JOIN studio ON studio.id = movie_table.studio_id;
 .print "========"
 .print ""
 
-SELECT movie_title, actor_name, character_name
-FROM movie_table
-INNER JOIN character on movie_table. = 
-INNER JOIN character on actorinfo.
+SELECT movie_table.movie_title, actorinfo.actor_name, character.character_name
+FROM character
+INNER JOIN movie_table on movie_table.id = character.movie_id
+INNER JOIN actorinfo on actorinfo.id = character.actor_id;
 
 -- The SQL statement for the cast output
 -- TODO!
